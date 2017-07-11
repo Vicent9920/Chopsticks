@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="cn.com.luckytry.chopsticks.Main2Activity">
+
+    <cn.com.luckytry.chopsticks.util.bridge.BridgeWebView
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:id="@+id/full_web_webview"
+        android:visibility="gone"
+        android:scrollbars="vertical"
+        >
+
+    </cn.com.luckytry.chopsticks.util.bridge.BridgeWebView>
+
+   <cn.com.luckytry.baselibrary.view.ShowImageWebView
+       android:id="@+id/ShowImageWebView"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+
+       />
+
+</LinearLayout>

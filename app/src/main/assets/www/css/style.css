@@ -1,0 +1,23 @@
+/* Empty. Add your own CSS if you like */
+
+/*.bar .back-button.hide, .bar .buttons .hide{*/
+  /*display: block;*/
+/*}*/
+.tc{
+  text-align: center;
+}
+.tl{
+  text-align: left;
+}
+.tr{
+  text-align: right;
+}
+.pa{
+  position: absolute;
+}
+.pr{
+  position: relative;
+}
+.f12{
+  font-size: 12px;
+}

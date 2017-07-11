@@ -1,0 +1,34 @@
+<ion-view view-title="Map">
+  <ion-content class="account-content padding">
+    <button class="button button-light" ng-click="checkeMap()">
+      查看地图
+    </button>
+    <!--<div ng-include="'login.html'" class="well"></div>-->
+    <!--<ion-list>-->
+    <!--<ion-toggle  ng-model="settings.enableFriends">-->
+        <!--Enable Friends-->
+    <!--</ion-toggle>-->
+    <!--</ion-list>-->
+  </ion-content>
+  <!--<script src="https://www.baidu.com/" type="text/ng-template"   id="lovestory.html"></script>-->
+  <!--<script type="text/ng-template" id="lovestory.html">-->
+    <!--<h4>lovestory</h4>-->
+    <!--<p>这是script标签获取模板文件的方式</p>-->
+    <!--<a href="http://www.baidu.com">标签启用templateCache方式</a>-->
+  <!--</script>-->
+
+  <script id="login.html" type="text/ng-template">
+  <ion-modal-view>
+  <ion-header-bar align-title="center" class="bar-positive">
+  <div class="buttons">
+  <button  class="button button-clear button-icon icon ion-ios-arrow-back"></button>
+  <button ng-click="closeModal()" class="button button-clear button-icon icon ">取消</button>
+  </div>
+  <h1 class="title">LOGIN</h1>
+  </ion-header-bar>
+  <ion-content scroll="true" class="has-header no-padding">
+  <iframe id="ifmr2" data-tap-disabled="true" src="https://www.baidu.com/"></iframe>
+  </ion-content>
+  </ion-modal-view>
+  </script>
+</ion-view>

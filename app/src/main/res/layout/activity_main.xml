@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="cn.com.luckytry.chopsticks.MainActivity">
+
+   <FrameLayout
+       android:id="@+id/container"
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="1">
+
+   </FrameLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ccc"/>
+    <RadioGroup
+        android:id="@+id/ll_rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/rg_takeout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:button="@null"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/takeout_drawabletop"
+            android:textColor="@drawable/bottombar_textcolor"
+            android:text="外卖"/>
+
+        <RadioButton
+            android:id="@+id/rg_discover"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:button="@null"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/discover_drawabletop"
+            android:textColor="@drawable/bottombar_textcolor"
+            android:text="发现"/>
+
+        <RadioButton
+            android:id="@+id/rg_order"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:button="@null"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/order_drawabletop"
+            android:textColor="@drawable/bottombar_textcolor"
+            android:text="订单"/>
+
+        <RadioButton
+            android:id="@+id/rg_mine"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:button="@null"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/mine_drawabletop"
+            android:textColor="@drawable/bottombar_textcolor"
+            android:text="我的"/>
+    </RadioGroup>
+</LinearLayout>

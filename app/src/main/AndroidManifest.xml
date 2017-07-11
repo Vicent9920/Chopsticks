@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cn.com.luckytry.chopsticks">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/NotitleBar">
+        <meta-data
+            android:name="com.taobao.android.hotfix.IDSECRET"
+            android:value="24521646-1" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.APPSECRET"
+            android:value="ba148a82ef6ac32cd94fcb3f43390b2b" />
+        <meta-data
+            android:name="com.taobao.android.hotfix.RSASECRET"
+            android:value="MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDI6Q/Io5VOwdsDc4UZA/GSdt+7sOriQ0JdGAhquKG8FAn1W45x6G3ts4uXQhpQ7bBLLcM22LjvVvfQWJL3Cp/ovipz5USUC45e2U4OYNfYVpi9RShYfwyU8wllLM09lSOfLY5xnCXPM8RbMJPrkMnI7MQvqNSy0h6AqsmD/NOvVSlCl0cyU18dPHcdXmvIgijUHjgXG2+0jh+WlkJbuBlwi/7AxqNQPu/hTsaeQNh6XZWaIl7pAIgzhbXw36YrMCWlUlg6xrVWZqrybsR3nvr0GafoEGy8S2q6i04dvwEMdqUgvf7R8vQegWTjwFmXDgUF6J2Lu8g8e0NeXHiGE8rDAgMBAAECggEAQVJla1qkZOLqjoi0sZlypag4vhGbjM1JenMh6XD2ROxPAJMwESD8/NfvftJjNATT2N2cJuz30/l2wSrLPb8altWdf+j/DxNiyrvkgRBDnXcqWf9uSrekI5mRaG/Umz0uQ8bQFWgrct7l7LAyp9h/gvBYKRa/cRSYDkV5F4zQVqTKK6QMvm7jxkxqoB/WPCgNXGx7NDGDM19QGZZpakl0OKrAxsri3jMIuGrLYBfmbX2VwzlL/HQvRZkbPLN9J1vn7J3BLwGyrARwZQ0TZmXf4/a4N5vI3RANg7Sm9vljtGk6UdLlOlMUWhtrM3Mgs4fg5QbvMTFzpHEW1giFfSHqAQKBgQDounEsuSVm77nlzkK34XxnvzFcpVp0smWk99y6ZETwbdNBLlKjNOfCKzB3kxUawEdOXkgX311Tz/Uz+l+S5zT50rjsAMov6Sm4R3lXsRokTSUa6SGP55Ma5B4R3J36ONCJjPd4j602fnvk6hSWFl/WXFSiOndgKwEXS7EJ3onegwKBgQDdAB7j5hTPH21QtrzbmP+VrjSDx7glMSCzOG3abJQY4tL2W2I/VjxT4BP6nugwzo8ml+Sq1MXPHHvI+DKVwRvoGp3e1V5MEvMUSjO/31leDg3sN4tUrNJT7OQxTUh/VQ4qoWi6e3TmjjHv3aAuG/5utivKlgd1yjMnCZg3FKKuwQKBgC4VJO3XJ3nPhD7l7b4dbxXX/P08XMH4xTm6PsHFswTsqkUg2AorIq0HAkzbGfW3FyeEccAQYZmD9yi4rg4XrBy/xhAtQ9viznkH5hYgIm4HvI4slZG6KB3OB8o/piRy9ZAXErWTtZexyfSVCUiC261FkRiifRrUyR2ExmSO5TvjAoGBANVqoGoEbmP2PWKMlaSbA3ZQXHZGEBYaczGfdLZR1FKT+JXfeekgJfH5mlGT0zYOwz7JwBEYmE2BfCh/RppHeeOSkJH4Cq/8PLGDVqYb0fl6KQfMO8jxe8uAIH1b3H7abGvOo4wyXJmpB6BTrbPZZMMVOQTSDTI6qVsxcMUAMHoBAoGBAM3u7FjaZcEqvR9oRpQFM6WN69gJboAyNZdAwwQNICAJCcc2bFdGVSHfsRCrhRA1O7zRu4ULXPDCfLyJ4ysuJnKdpESfyR/qD54yA71+DY/Eol66zWvLf5AJ/hhGt9haeiQiZ1p6gQTiBJ/bSeCmgPOlGidgbPqa0FW/qiuTUPJa" />
+
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".WelcomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Main2Activity"></activity>
+
+        <service android:name=".background.AnalysisServices" />
+    </application>
+
+</manifest>

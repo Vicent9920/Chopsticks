@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 首页bangner显示列数 -->
+    <integer name="HomePageBannerColumn">4</integer>
+</resources>

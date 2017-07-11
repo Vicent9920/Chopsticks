@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="15dp"
+    android:gravity="center_vertical">
+
+   <TextView
+       android:id="@+id/tv_Promotion"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:gravity="center_vertical"
+       android:text="热卖套餐"
+       android:textColor="@android:color/black"
+       android:textStyle="bold"
+       android:layout_above="@+id/tv_Introduce"
+       android:layout_alignParentLeft="true"
+       android:layout_alignParentStart="true" />
+    <TextView
+        android:id="@+id/tv_Introduce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:text="附近畅销美食"
+        android:textColor="#666"
+        android:layout_alignBottom="@+id/iv_img"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="21dp" />
+
+    <ImageView
+        android:id="@+id/iv_img"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginRight="15dp"
+        android:src="@mipmap/p1"
+        android:layout_alignParentRight="true"/>
+</RelativeLayout>

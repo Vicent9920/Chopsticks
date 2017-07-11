@@ -1,0 +1,42 @@
+<ion-view view-title="Nursery">
+  <!--<ion-header-bar align-title="center">-->
+    <!--<div class="buttons"  ng-click="ionicGoBack()">-->
+      <!--<a class="button" ><i class="ion ion-ios-arrow-back"></i></a>-->
+    <!--</div>-->
+    <!--<h1 class="title">nursery</h1>-->
+  <!--</ion-header-bar>-->
+  <ion-content class="padding">
+    <h2 style="text-align: center;color: #11c1f3">Welcome to Nursery</h2>
+    <ion-slide-box auto-play="true" does-continue="true" show-pager="false" slide-interval=1500>  <!--轮播图-->
+      <ion-slide >
+        <div class="box banner"><img src="img/nursery1.jpg" style="width: 100%;"/></div>
+      </ion-slide>
+      <ion-slide>
+        <div class="box banner"><img src="img/nursery2.jpg" style="width: 100%;"/></div>
+      </ion-slide>
+      <ion-slide>
+        <div class="box banner"><img src="img/nursery1.jpg" style="width: 100%;"/></div>
+      </ion-slide>
+    </ion-slide-box>
+
+
+    <form name="myForm"  ng-submit="signIn()">  <!--登陆-->
+          <div class="list list-inset removePM">
+               <label class="item item-input">
+                 <span class="input-label ion-android-people">&nbsp;&nbsp;用户名</span>
+                   <input type="text" name="txtUserName" placeholder="请输入用户名" ng-model="user.username" required>
+               </label>
+              <label class="item item-input">
+                <span class="input-label ion-android-lock">&nbsp;&nbsp;密码</span>
+                <input type="password" name="txtPwd" placeholder="请输入密码" ng-model="user.password" required></label>
+          </div>
+            <div class="row list-borderless">
+              <button class="button button-block button-positive" type="submit" ng-disabled=" myForm.txtUserName.$invalid || myForm.txtPwd.$invalid">
+                <b>登&nbsp;&nbsp;录</b>
+              </button>
+            </div>
+    </form>
+
+
+  </ion-content>
+</ion-view>
