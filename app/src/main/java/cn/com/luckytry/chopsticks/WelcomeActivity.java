@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
+import cn.com.luckytry.baselibrary.view.ShowImageWebView;
 import cn.com.luckytry.chopsticks.background.AnalysisServices;
 
 /**
@@ -13,28 +15,17 @@ import cn.com.luckytry.chopsticks.background.AnalysisServices;
  */
 public class WelcomeActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE); // 去除标题  必须在setContentView()方法之前调用
         setContentView(R.layout.activity_welcome);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); // 设置全屏
+        ShowImageWebView webView = (ShowImageWebView) findViewById(R.id.webView);
+        webView.loadUrl("https://h5.ele.me/");
         startService(new Intent(this, AnalysisServices.class));
-//       new Thread(){
-//           @Override
-//           public void run() {
-//               super.run();
-//               List<ShopBean> data = DataSupport.findAll(ShopBean.class);
-//               if(data.size() == 0){
-//                   LUtil.e("开始解析数据");
-//                   JsoupUtil.getData();
-//               }else{
-//                   LUtil.e("数据不用解析");
-//                   Const.isReady = true;
-//               }
-//           }
-//       }.start();
+        ImageView img = (ImageView) findViewById(R.id.img);
+
         new Thread(){
             @Override
             public void run() {
@@ -47,11 +38,13 @@ public class WelcomeActivity extends AppCompatActivity {
                 }
                 //TODO 待申请权限，待权限回调成功以后启动主界面
                 startActivity(new Intent(WelcomeActivity.this,MainActivity.class));
-//                finish();
+                finish();
             }
 
 
         }.start();
+
+
     }
 
 

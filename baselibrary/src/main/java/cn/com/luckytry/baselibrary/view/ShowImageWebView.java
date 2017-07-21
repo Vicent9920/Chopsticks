@@ -14,8 +14,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import cn.com.luckytry.baselibrary.util.Const;
 import cn.com.luckytry.baselibrary.util.FileUtil;
-import cn.com.luckytry.baselibrary.util.LUtil;
 
 /**
  * 获取html
@@ -115,22 +115,22 @@ public class ShowImageWebView extends WebView {
      * @param view
      */
     public void parseHTML(final WebView view) {
-
-
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                post(new Runnable() {
-                    @Override
-                    public void run() {
-                        view.loadUrl("javascript:window.local_obj.showSource('<head>'+"
-                                + "document.getElementsByTagName('body')[0].innerHTML+'</head>');");
-                    }
-                });
-            }
-        },20000);
-
+        //下载html文件时间的频率为每天一次
+        if(!FileUtil.isToday(Const.htmltime)){
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    post(new Runnable() {
+                        @Override
+                        public void run() {
+                            view.loadUrl("javascript:window.local_obj.showSource('<head>'+"
+                                    + "document.getElementsByTagName('body')[0].innerHTML+'</head>');");
+                        }
+                    });
+                }
+            },18000);
+        }
 
     }
 
@@ -162,14 +162,17 @@ public class ShowImageWebView extends WebView {
          */
         @android.webkit.JavascriptInterface
         public void showSource(String html) {
-            LUtil.e("JavascriptInterface",html);
+//            LUtil.e("JavascriptInterface",html);
             FileUtil.saveLog(html,"html.txt");
+//            FileUtil.saveFile("html.txt",html);
+            Const.isReady = 0;
+            Const.htmltime = System.currentTimeMillis();
 
-            Matcher matcher = Pattern.compile(IMAGE_URL_TAG).matcher(html);
+//            Matcher matcher = Pattern.compile(IMAGE_URL_TAG).matcher(html);
 
-            while (matcher.find()) {
+//            while (matcher.find()) {
 //                LUtil.e("showSource",matcher.group());
-            }
+//            }
         }
     }
 

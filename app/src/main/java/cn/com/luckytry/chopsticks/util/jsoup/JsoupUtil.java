@@ -3,6 +3,7 @@ package cn.com.luckytry.chopsticks.util.jsoup;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.litepal.crud.DataSupport;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +19,11 @@ import cn.com.luckytry.chopsticks.mould.ShopBean;
  * Created by 魏兴 on 2017/6/28.
  */
 
-public class JsoupUtil {
+public class JsoupUtil{
+
+
+
+
     /**
      * 获取数据
      *      待实现线程管理
@@ -49,13 +54,15 @@ public class JsoupUtil {
             File input = new File(FileUtil.getFilePath("html.txt"));
             Document doc = Jsoup.parse(input, "GBK", "https://www.ele.me");
             ArrayList<Element> baseDatas = doc.select("section.index-container_2XMzI");
+
             if(baseDatas != null && baseDatas.size() > 0){
+                DataSupport.deleteAll(ShopBean.class);
                 for (int i = 0; i < baseDatas.size(); i++) {
                     ShopBean bean = new ShopBean();
                     Element element = baseDatas.get(i);
-                    LUtil.e(element.html());
                     Element elementTitle = element.select("img").first();
                     String path = elementTitle.attr("src");
+                    LUtil.e(getString(path.substring(0, path.indexOf("?"))));
                     bean.setIconUrl( getString(path.substring(0, path.indexOf("?"))));
                     bean.setTitle(getString(element.select("h3").first().text()));
                     Element element1Score = element.select(".index-rate_2O_yP").first();
@@ -110,7 +117,8 @@ public class JsoupUtil {
                     }
                     bean.save();
                 }
-                Const.isReady = true;
+                Const.isReady = 1;
+                Const.dataTime = System.currentTimeMillis();
             }
         } catch (Exception e) {
             LUtil.e("getData",e);

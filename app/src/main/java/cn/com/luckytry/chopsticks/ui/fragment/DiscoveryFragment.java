@@ -2,6 +2,7 @@ package cn.com.luckytry.chopsticks.ui.fragment;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,19 +17,18 @@ import cn.com.luckytry.chopsticks.adapter.MainRecyclerAdapter;
 import cn.com.luckytry.chopsticks.view.DividerDecorationList;
 
 /**
- * 外卖
+ * 发现
+ * Created by 魏兴 on 2017/7/13.
  */
-public class TakeOutFragment extends Fragment {
 
+public class DiscoveryFragment extends Fragment{
 
     private MainRecyclerAdapter mAdapter;
-
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_take_out, container, false);
+        View view = inflater.inflate(R.layout.fragment_discovery, container, false);
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.nsl_rv_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

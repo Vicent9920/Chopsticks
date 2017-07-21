@@ -21,6 +21,7 @@ import org.litepal.crud.DataSupport;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.com.luckytry.baselibrary.util.GlideRoundTransform;
 import cn.com.luckytry.baselibrary.util.LUtil;
 import cn.com.luckytry.chopsticks.R;
 import cn.com.luckytry.chopsticks.mould.MainBannerBean;
@@ -145,6 +146,7 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter {
             viewPager.addOnPageChangeListener(this);
             viewPager.setCurrentItem(currentIndex);
             ImageView imgIcon1 = (ImageView) view.findViewById(R.id.roundImageView1);
+            Glide.with(mContext).load("https://fuss10.elemecdn.com/b/6d/656006edcd86033a1b32b23ddea37jpeg.jpeg").into(imgIcon1);
             imgIcon1.setImageResource(R.mipmap.roundimageview1);
             ImageView imgIcon2 = (ImageView) view.findViewById(R.id.roundImageView2);
             imgIcon2.setImageResource(R.mipmap.roundimageview2);
@@ -229,7 +231,8 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter {
 
                 @Override
                 protected void convert(ViewHolder holder, ShopBean shopBean, int position) {
-                    Glide.with(mContext).load(shopBean.getIconUrl()).into((ImageView) holder.getView(R.id.iv_icon));
+//                    Glide.with(mContext).load("http:"+shopBean.getIconUrl()).error(R.mipmap.b1).into((ImageView) holder.getView(R.id.iv_icon));
+                    Glide.with(mContext).load("http:"+shopBean.getIconUrl()).transform(new GlideRoundTransform(mContext)).into((ImageView) holder.getView(R.id.iv_icon));
                     if(shopBean.isBrand()){
                         holder.setVisible(R.id.tv_brand,true);
                     }else{

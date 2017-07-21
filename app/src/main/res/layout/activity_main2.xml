@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     tools:context="cn.com.luckytry.chopsticks.Main2Activity">
 
     <cn.com.luckytry.chopsticks.util.bridge.BridgeWebView
@@ -17,11 +18,15 @@
 
     </cn.com.luckytry.chopsticks.util.bridge.BridgeWebView>
 
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
    <cn.com.luckytry.baselibrary.view.ShowImageWebView
        android:id="@+id/ShowImageWebView"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-
+        android:visibility="gone"
        />
 
 </LinearLayout>

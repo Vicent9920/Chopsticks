@@ -39,12 +39,11 @@
             app:type="round"
             app:borderRadius="2dp"/>
         <View
-            android:layout_width="5dp"
+            android:layout_width="0dp"
             android:layout_height="90dp"/>
         <cn.com.luckytry.chopsticks.view.RoundImageView
             android:id="@+id/roundImageView2"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="120dp"
             android:src="@mipmap/icon_music1"
             app:type="round"

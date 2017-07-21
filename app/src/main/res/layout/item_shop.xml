@@ -17,6 +17,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
         android:layout_toRightOf="@+id/iv_icon">
 
         <TextView
@@ -26,6 +27,7 @@
             android:background="#CDCD28"
             android:text="品牌"
             android:textColor="#330612"
+            android:layout_marginRight="3dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"/>
 
@@ -56,6 +58,7 @@
             android:layout_width="50dp"
             android:layout_height="15dp"
             android:layout_marginRight="3dp"
+            android:layout_marginTop="5dp"
             android:layout_below="@+id/tv_name"
             android:layout_alignParentLeft="true"
             android:rating="4.5"
@@ -81,13 +84,13 @@
             android:id="@+id/tv_punctual"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="2dp"
+            android:layout_marginRight="3dp"
             android:padding="1dp"
             android:text="准时达"
             android:textColor="#1F56EB"
             android:textSize="10sp"
             android:background="@drawable/punctual_bg"
-            android:layout_marginEnd="2dp"
+            android:layout_marginEnd="3dp"
             android:layout_alignTop="@+id/library_wide_ratingbar"
             android:layout_alignBottom="@+id/library_wide_ratingbar"
             android:layout_toLeftOf="@+id/tv_hummingbird"/>
@@ -113,6 +116,7 @@
             android:text="￥20起送 | 配送费2.5 | ￥15/人"
             android:textSize="10sp"
             android:layout_below="@+id/library_wide_ratingbar"
+            android:layout_marginTop="5dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 

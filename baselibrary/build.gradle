@@ -22,17 +22,23 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.3.1'
     testCompile 'junit:junit:4.12'
     compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'//Retrofit2所需要的包
-    compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'//ConverterFactory的Gson依赖包
-    compile 'com.squareup.retrofit2:converter-scalars:2.0.0-beta4'//ConverterFactory的String依赖包
-    compile 'com.squareup.okhttp3:logging-interceptor:3.1.2'//查看请求日志http://www.cnblogs.com/zhang-cb/p/6074176.html
-    compile 'me.zhanghai.android.materialratingbar:library:1.0.2'//MaterialRatingBar https://github.com/DreaminginCodeZH/MaterialRatingBar
-    compile 'com.zhy:base-rvadapter:3.0.3'  //万能Adapter
+    compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
+    //Retrofit2所需要的包
+    compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
+    //ConverterFactory的Gson依赖包
+    compile 'com.squareup.retrofit2:converter-scalars:2.0.0-beta4'
+    //ConverterFactory的String依赖包
+    compile 'com.squareup.okhttp3:logging-interceptor:3.1.2'
+    //查看请求日志http://www.cnblogs.com/zhang-cb/p/6074176.html
+    compile 'me.zhanghai.android.materialratingbar:library:1.0.2'
+    //MaterialRatingBar https://github.com/DreaminginCodeZH/MaterialRatingBar
+    compile 'com.zhy:base-rvadapter:3.0.3'
+    //万能Adapter
 }

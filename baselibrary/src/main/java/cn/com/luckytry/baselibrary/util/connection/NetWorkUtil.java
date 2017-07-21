@@ -2,7 +2,6 @@ package cn.com.luckytry.baselibrary.util.connection;
 
 import java.io.IOException;
 
-import cn.com.luckytry.baselibrary.util.Const;
 import cn.com.luckytry.baselibrary.util.LUtil;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
@@ -11,6 +10,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by 魏兴 on 2017/6/28.
@@ -19,14 +19,15 @@ import retrofit2.Retrofit;
 public class NetWorkUtil {
 
     private static NetWorkUtil intance;
-    private ServicesInterface service;
+    public ServicesInterface service;
 
     private void initRetrofit(){
        Retrofit retrofit = new Retrofit.Builder()
                //设置OKHttpClient,如果不设置会提供一个默认的
                .client(getOkHttpClient())
                //设置baseUrl
-               .baseUrl(Const.BASE_BRL)
+//               .baseUrl(Const.BASE_BRL)
+               .baseUrl("http://192.168.167.234:8091/")
                .build();
 
         service = retrofit.create(ServicesInterface.class);
@@ -74,7 +75,7 @@ public class NetWorkUtil {
     }
     private OkHttpClient getOkHttpClient() {
         //日志显示级别  已经是最高级别了
-        HttpLoggingInterceptor.Level level= HttpLoggingInterceptor.Level.NONE;
+        HttpLoggingInterceptor.Level level= HttpLoggingInterceptor.Level.BASIC;
         //新建log拦截器
         HttpLoggingInterceptor loggingInterceptor=new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
 
@@ -94,5 +95,17 @@ public class NetWorkUtil {
     public interface CallBack{
         String onResult(String result);
         void onError(Exception err);
+    }
+
+    public static ServicesInterface getService() {
+        Retrofit retrofit = new Retrofit.Builder()
+                //设置baseUrl
+//               .baseUrl(Const.BASE_BRL)
+                .baseUrl("http://192.168.167.234:8091/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ServicesInterface services = retrofit.create(ServicesInterface.class);
+        return services;
     }
 }

@@ -3,4 +3,6 @@
 
     <!-- 首页bangner显示列数 -->
     <integer name="HomePageBannerColumn">4</integer>
+    <dimen name="mminheard">12dp</dimen>
+    <dimen name="displayHeight">40dp</dimen>
 </resources>
