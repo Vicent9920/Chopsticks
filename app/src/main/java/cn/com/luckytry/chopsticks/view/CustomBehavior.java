@@ -1,10 +1,12 @@
 package cn.com.luckytry.chopsticks.view;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import java.lang.ref.WeakReference;
@@ -73,7 +75,7 @@ public class CustomBehavior extends CoordinatorLayout.Behavior {
         child.layout(0, 0, parent.getWidth(), (parent.getHeight() - dependentView.get().getHeight()));
         if (heardSize == -1) {
             heardSize = dependentView.get().getHeight();
-            minHeard = heardSize - dependentView.get().findViewById(R.id.title_info).getHeight();
+            minHeard = dependentView.get().findViewById(R.id.title_info).getHeight();
             mminHeard = dependentView.get().findViewById(R.id.shop_hint).getHeight()+
                     child.getResources().getDimensionPixelSize(R.dimen.mminheard);
             displayHeight =  child.getResources().getDimensionPixelSize(R.dimen.displayHeight);
@@ -112,35 +114,186 @@ public class CustomBehavior extends CoordinatorLayout.Behavior {
     @Override
     public void onNestedScrollAccepted(CoordinatorLayout coordinatorLayout, View child, View directTargetChild, View target, int nestedScrollAxes) {
         //清除动画
-//        clearAnimotor();
+        clearAnimotor();
         isScroll = false;
         LUtil.e(TAG,"onNestedScrollAccepted");
     }
 
+    /**
+     * 在开始嵌套滑动之前，会执行此操作，dx、dy分别表示用户手指滑动的距离，consumed则表示在操作过程中，消耗掉的滑动距离
+     * @param coordinatorLayout
+     * @param child
+     * @param target
+     * @param dx
+     * @param dy
+     * @param consumed
+     */
     @Override
     public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, View child, View target, int dx, int dy, int[] consumed) {
         View view = dependentView.get();
-        int height = (int) target.getTranslationY();
+        ViewGroup.LayoutParams params = view.getLayoutParams();
+        int height = (int) child.getTranslationY();
+        if (dy > 0 && height > minHeard) {
+            if (height <= heardSize) {
+                int h = height - dy;
+                int H = (h < minHeard) ? minHeard : h;
+                view.setTranslationY(-(heardSize-H));
 
+                child.setTranslationY(H);
+                consumed[1] = dy;
+            }else if(height <= (heardSize-minHeard)){
+                int h = height - dy;
+                int H = (h < minHeard) ? minHeard : h;
+                params.height = H;
+                view.setLayoutParams(params);
+                child.setTranslationY(H);
+                consumed[1] = dy;
+            }
 
-        if ( Math.abs(translationY) <= minHeard) {
-
-            int y = Math.abs(dy + translationY) >= minHeard ? minHeard - translationY:dy;
-
-
-            LUtil.e(TAG,"dy:"+y);
-//            view.setTranslationY( - (translationY + y));
-
-
-        }else if(  Math.abs(translationY) <= (minHeard+displayHeight)){
-
-            int moveDY = (translationY + dy) - minHeard;
-            LUtil.e(TAG,"准备移动——dy:"+ dy +"translationY:"+ translationY);
-            hintView.setTranslationY(-moveDY);
 
         }
-        translationY += dy;
-        LUtil.e(TAG,"translationY:" + translationY);
 
+
+    }
+
+    /**
+     * 此方法在嵌套滑动时候调用，可以多滑动过程进行操作
+     * @param coordinatorLayout
+     * @param child
+     * @param target
+     * @param dxConsumed
+     * @param dyConsumed
+     * @param dxUnconsumed
+     * @param dyUnconsumed
+     */
+    @Override
+    public void onNestedScroll(CoordinatorLayout coordinatorLayout, View child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
+        if (dyUnconsumed > 0) {
+            return;
+        }
+        View view = dependentView.get();
+        ViewGroup.LayoutParams params = view.getLayoutParams();
+        int height = (int) child.getTranslationY();
+        if (dyUnconsumed < 0 && params!=null) {
+            int h = height - dyUnconsumed;
+
+            if (h >= 0 && h <= heardSize) {
+                view.setTranslationY(-(heardSize-h));
+                child.setTranslationY(h);
+            }else if(h >= 0 && h <= (heardSize-minHeard)){
+                params.height = h;
+                view.setLayoutParams(params);
+                child.setTranslationY(h);
+            }
+
+        }
+    }
+
+    @Override
+    public boolean onNestedPreFling(CoordinatorLayout coordinatorLayout, View child, View target, float velocityX, float velocityY) {
+        return onStopDrag(child, velocityY);
+
+    }
+
+    private boolean onStopDrag(View child, float velocityY) {
+        int height = dependentView.get().getHeight();
+        if (height>minHeard){
+            return true;
+        }else {
+            return false;
+        }
+
+    }
+
+
+    @Override
+    public boolean onNestedFling(CoordinatorLayout coordinatorLayout, View child, View target, float velocityX, float velocityY, boolean consumed) {
+        return true;
+    }
+
+
+    @Override
+    public void onStopNestedScroll(CoordinatorLayout coordinatorLayout, View child, View target) {
+
+        int height = dependentView.get().getHeight();
+        float translationY = childeView.get().getTranslationY();
+        if (translationY > height) {
+            isExpand = true;
+        } else {
+            isExpand = false;
+        }
+
+        if (isExpand) {
+            float pro = ((translationY - height) * 1.0f / heardSize);
+            creatExpendAnimator(translationY, height, (int) (500 * pro));
+        }
+
+
+        if (!isScroll && height > minHeard && height < heardSize) {
+            childeView.get().setScrollY(0);
+            if (height < 0.7 * heardSize) {//上滑
+                float pro = (height - minHeard) * 1.0f / (heardSize - minHeard);
+                creatAnimation(height, minHeard, (int) (500 * pro));
+            } else {//下滑
+                float pro = (heardSize - height) * 1.0f / (heardSize - minHeard);
+                creatAnimation(height, heardSize, (int) (500 * pro));
+            }
+            isScroll = true;
+        }
+
+
+    }
+
+
+    private ValueAnimator animator;
+
+    private void creatAnimation(float start, float end, int duration) {
+        clearAnimotor();
+        animator = ValueAnimator.ofFloat(start, end);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float value = (float) animation.getAnimatedValue();
+                View view = dependentView.get();
+                ViewGroup.LayoutParams params = view.getLayoutParams();
+                params.height = (int) value;
+                view.setLayoutParams(params);
+                childeView.get().setTranslationY(value);
+
+            }
+        });
+        animator.setDuration(duration);
+        animator.start();
+
+
+    }
+
+    private void creatExpendAnimator(float start, float end, int duration) {
+        clearAnimotor();
+        animator = ValueAnimator.ofFloat(start, end);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float value = (float) animation.getAnimatedValue();
+                View view = dependentView.get();
+                ViewGroup.LayoutParams params = view.getLayoutParams();
+                params.height = (int) value;
+                view.setLayoutParams(params);
+                childeView.get().setTranslationY(value);
+
+            }
+        });
+        animator.setDuration(duration);
+        animator.start();
+    }
+
+
+    private void clearAnimotor() {
+        if (animator != null) {
+            animator.cancel();
+        }
+
+
+        isScroll = false;
     }
 }
